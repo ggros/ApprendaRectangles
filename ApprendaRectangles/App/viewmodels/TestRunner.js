@@ -132,21 +132,19 @@ define(["require", "exports", 'durandal/app', '../entities/shapes', './SimpleEnt
         SimpleEntryTests.prototype.tearDown = function () {
             console.log("tearDown");
         };
-        SimpleEntryTests.prototype.testInitialStateOfRect = function () {
-            this.areIdentical(0, viewmodel.rect1.left());
-            this.areIdentical(0, viewmodel.rect1.top());
-            this.areIdentical(100, viewmodel.rect1.width());
-            this.areIdentical(100, viewmodel.rect1.height());
-            this.areIdentical(50, viewmodel.rect2.left());
-            this.areIdentical(50, viewmodel.rect2.top());
-            this.areIdentical(100, viewmodel.rect2.width());
-            this.areIdentical(100, viewmodel.rect2.height());
-            this.areIdentical(2, viewmodel.rectangles().length);
-        };
         SimpleEntryTests.prototype.IntersectionShouldAddRectangleToModel = function () {
+            viewmodel.rect1.left(0);
+            viewmodel.rect1.top(0);
+            viewmodel.rect1.width(100);
+            viewmodel.rect1.height(100);
+            viewmodel.rect2.left(50);
+            viewmodel.rect2.top(50);
+            viewmodel.rect2.width(50);
+            viewmodel.rect2.height(50);
+            var l = viewmodel.rectangles().length + 1;
             viewmodel.testIntersection();
-            this.areIdentical(3, viewmodel.rectangles().length);
-            var interObs = viewmodel.rectangles()[2];
+            this.areIdentical(l, viewmodel.rectangles().length);
+            var interObs = viewmodel.rectangles()[l - 1];
             this.areIdentical(50, interObs.left());
             this.areIdentical(50, interObs.top());
             this.areIdentical(50, interObs.width());
@@ -161,7 +159,6 @@ define(["require", "exports", 'durandal/app', '../entities/shapes', './SimpleEnt
                 return null;
             };
             viewmodel.testIntersection();
-            this.areIdentical(3, viewmodel.rectangles().length);
             this.areIdentical("No Intersection", message);
         };
         SimpleEntryTests.prototype.NoContainementShouldPopMessage = function () {
@@ -236,4 +233,3 @@ define(["require", "exports", 'durandal/app', '../entities/shapes', './SimpleEnt
     })(tsUnit.TestClass);
     exports.SimpleEntryTests = SimpleEntryTests;    
 })
-//@ sourceMappingURL=TestRunner.js.map

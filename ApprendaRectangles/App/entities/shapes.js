@@ -62,4 +62,3 @@ define(["require", "exports"], function(require, exports) {
     var p = new Point(3, 4);
     var dist = p.getDist();
 })
-//@ sourceMappingURL=shapes.js.map

@@ -205,4 +205,3 @@ define(["require", "exports"], function(require, exports) {
     })();
     exports.TestResult = TestResult;    
 })
-//@ sourceMappingURL=tsUnit.js.map
