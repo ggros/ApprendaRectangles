@@ -13,6 +13,7 @@ namespace ApprendaRectangles {
           .Include("~/Scripts/knockout-2.2.1.js")
           .Include("~/Scripts/sammy-0.7.4.min.js")
           .Include("~/Scripts/bootstrap.min.js")
+          .Include("~/Scripts/easeljs-0.6.0.min.js")
         );
 
       bundles.Add(

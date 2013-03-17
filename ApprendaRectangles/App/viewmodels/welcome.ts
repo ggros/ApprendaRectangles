@@ -1,5 +1,5 @@
-export var displayName = 'Welcome to the Durandal Starter Project!';
-export var description = 'Durandal is a cross-device, cross-platform client framework written in JavaScript and designed to make Single Page Applications (SPAs) easy to create and maintain.';
+export var displayName = 'Welcome to the Apprenda Dev Test!';
+
 export var features = [
             'Clean MV* Architecture',
             'JS & HTML Modularity',

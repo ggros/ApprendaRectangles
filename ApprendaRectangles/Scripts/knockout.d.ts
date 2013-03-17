@@ -265,6 +265,8 @@ interface KnockoutUtils {
     postJson(urlOrForm: any, data: any, options: any): void;
 
     domNodeDisposal;
+
+    compareArrays(oldArray: any, newArray: any): any;
 }
 
 

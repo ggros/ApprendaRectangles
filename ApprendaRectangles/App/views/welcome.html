@@ -1,14 +1,75 @@
 ﻿<section>
-    <h2 data-bind="html:displayName"></h2>
-    <blockquote data-bind="html:description"></blockquote>
-    <h3>Features</h3>
+    <h2 data-bind="html: displayName"></h2>
+    <blockquote>
+        <h3>Problem Description:</h3>
+        <p>
+            You are required to write code in the language of your choice implementing certain algorithms that 
+            analyze rectangles and features that exist among rectangles. Your implementation is required to cover 
+            the following:
+        </p>
+        <ol>
+            <li>Intersection: You must be able to determine whether two rectangles have one or more 
+                intersecting lines and produce a result identifying the points of intersection. For your 
+                convenience, the scenario is diagrammed in Appendix 1.</li>
+            <li>Containment: You must be able to determine whether a rectangle is wholly contained within 
+                another rectangle. For your convenience, the scenario is diagrammed in Appendix 2.</li>
+            <li>Adjacency: Implement the ability to detect whether two rectangles are adjacent. Adjacency is 
+                defined as the sharing of a side. Side sharing may be proper or sub-line, where a sub-line share 
+                is one where one side of rectangle A is a line that exists as a set of points wholly contained on 
+                some other side of rectangle B. For your convenience, the scenario is diagrammed in Appendix 3.</li>
+        </ol>
+        <p>
+            Your implementation should capture the rectangle entity as well as the operations listed above. Feel 
+            free to expand on this problem as you wish. Document any expansion and provide it as part of your 
+            submission.
+        </p>
+        <p>
+            Your submitted source code must compile (if necessary) and the resulting executable must run on the 
+            Windows platform. Please document any library or framework dependencies.
+        </p>
+    </blockquote>
+    <h3>Solution Description</h3>
+    <p>
+        I decided to use this exercice to showcase that one can grasp new concepts quickly.
+        As such, this website was built using some bleeding edge technology that I only had seen in blog posts: Typescript, SPA, HTML Canvas
+    </p>
+    <p>The IDE used is Visual Studio 2012 with ASP.Net MVC 4 SPA (Single Page Application) Template</p>
+    <p>
+        The sub template used is based on DurandalJS MVVM Framework (durandaljs.com) but viewmodels have been created with TypeScript.<br />
+        TypeScript definitions files are coming from https://github.com/borisyankov/DefinitelyTyped
+    </p>
+    <p>
+        There are actually quite a lot of choice when it comes to choosing a JS Framework as you can see here: <a href="http://addyosmani.github.com/todomvc/">http://addyosmani.github.com/todomvc/</a><br />
+        I picked DurandalJS mainly because it is based on KnockoutJs which is supported by Microsoft (and inspired by XAML) and also because it was one of the template readily available for ASP.net SPA.
+    </p>
+    <h4>Required Softs</h4>
+    <ul>
+        <li>Visual Studio 2012 with Nuget</li>
+        <li>ASP.net and Web Tools 2012.2 (<a href="http://www.asp.net/single-page-application/overview/templates" target="_blank">link</a>)</li>
+        <li>TypeScript 0.8.3 For Visual Studio (Addin) - <a href="http://www.typescriptlang.org/">typescriptlang.org</a> </li>
+        <li>Optional: Web Essentials 2012 - for enhanced Typescript support in VS(<a href="http://visualstudiogallery.msdn.microsoft.com/07d54d12-7133-4e15-becb-6f451ea3bea6" target="_blank">link</a>)</li>
+<!--        <li></li>
+        <li></li>
+        <li></li>-->
+    </ul>
+    <h4>Code Organization</h4>
+    <p>
+        <ul>
+            <li>Since it is an SPA Application, all the presentation Tier is in Javascript, in the App/ folder. the ASP.net MVC Framework is only used to render the layout.</li>
+            <li>All js is loaded using requirejs, so ViewModels are compiled by TypeScript as AMD Modules and then are loaded on demand</li>
+            <li>Calculations (Intersection, Containement and Adjacency) have been implemented in Javascript. (entities/shapes.ts)</li>
+            <li>In this version, to simplify the algorithms and data entry, we assume that rectangles are axis-aligned rectangles as shown in the Appendix</li>
+            <li>The page "Simple Entry" is a view that will let a user manually test the calculations.<br/>
+                It is using an HTML5 Canvas and the library easeljs (from Adobe) to draw shapes on it.<br/>
+                The shapes are displayed using MVVM and required to build a new Binding Handler
+            </li>
+            <li>The page "Test Runner" will run all the Javascript/Typescript Tests using <a href="http://tsunit.codeplex.com/">tsUnit</a></li>
+            <li>The template already had bootstrap.css included and design is as such the default design</li>
+        </ul>
+    </p>
+    <!--<h4>DurandalJS Features</h4>
     <ul data-bind="foreach: features">
         <li data-bind="html: $data"></li>
-    </ul>
-    <div class="alert alert-success">
-      <h4>Read Me Please</h4>
-        For more information about this starter project's architecture, please see the readme file located in the root of the project.
-        For general documenation please visit <a href="https://github.com/EisenbergEffect/Durandal/wiki">the wiki</a> and if you can't find 
-        answers to your questions there, we hope you will join our <a href="https://groups.google.com/forum/?fromgroups#!forum/durandaljs">google group</a>.
-    </div>
+    </ul>-->
+
 </section>

@@ -23,7 +23,7 @@ define(function(require) {
         router.useConvention();
         router.mapNav('welcome');
         router.mapNav('SimpleEntry');
-        router.mapNav('flickr');
+        //router.mapNav('flickr');
         router.mapNav('TestRunner');
 
         app.adaptToDevice();

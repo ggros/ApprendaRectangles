@@ -1,6 +1,5 @@
 define(["require", "exports"], function(require, exports) {
-    exports.displayName = 'Welcome to the Durandal Starter Project!';
-    exports.description = 'Durandal is a cross-device, cross-platform client framework written in JavaScript and designed to make Single Page Applications (SPAs) easy to create and maintain.';
+    exports.displayName = 'Welcome to the Apprenda Dev Test!';
     exports.features = [
         'Clean MV* Architecture', 
         'JS & HTML Modularity', 

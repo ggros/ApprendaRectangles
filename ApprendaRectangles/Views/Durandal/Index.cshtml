@@ -26,7 +26,6 @@
         }
 
     </script>
-    <script src="~/Scripts/easeljs-0.6.0.min.js"></script>
 </head>
 <body>
     <div id="applicationHost">
@@ -34,102 +33,6 @@
     </div>
 
     @Scripts.Render("~/scripts/vendor")
-    <script type="text/javascript">
-        
-        ko.bindingHandlers.rectA = {
-            doupdate: true,
-            init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
-                var modelValue = valueAccessor();
-                var arr = ko.utils.unwrapObservable(valueAccessor());
-                var canvas = element;
-
-                var stage = new createjs.Stage(element);
-                stage.enableMouseOver();
-                var container = new createjs.Container();
-                stage.addChild(container);
-
-                //wrapper function to provide scope for events
-                var h = function (target, rect) {
-
-                    target.onPress = function (e) {
-                        //canvas.style.cursor = 'pointer';
-                        $(canvas).css('cursor', 'pointer');
-                        // bump the target in front of it's siblings:
-                        container.addChild(target);
-                        var offset = { x: target.x - e.stageX, y: target.y - e.stageY };
-
-                        e.onMouseMove = function (ev) {
-                            //No need to set target.x it will be done because
-                            //there is an observer on left and top
-                            rect.left(ev.stageX + offset.x);
-                            rect.top(ev.stageY + offset.y);
-                        };
-                    };
-                    target.onMouseOver = function () {
-                    };
-                    target.onMouseOut = function () {
-                    };
-                };
-                //create rectangles on stage main container
-                ko.utils.arrayForEach(arr, function (r) {
-                    console.log(r);
-                    var rect = ko.utils.unwrapObservable(r);
-                    var shape = new createjs.Shape();
-                    var label = new createjs.Text(rect._rect.name, "bold 14px Arial", "#FFFFFF");
-                    label.textAlign = "center";
-                    label.x = rect.width() / 2;
-                    label.y = -7 + rect.height() / 2;
-                    var color = rect._rect.color;
-                    shape.graphics.beginFill(createjs.Graphics.getRGB(color.R, color.G, color.B)).drawRect(0, 0, rect.width(), rect.height());
-                    //set origin at 0,0
-                    //shape.regX = 0;
-                    //shape.regY = 0;
-
-                    var shape1 = new createjs.Container();
-                    shape1.x = rect.left();
-                    shape1.y = rect.top();
-                    shape1.addChild(shape, label);
-                    h(shape1, r);
-                    container.addChild(shape1);
-
-                    //observe
-                    r.left.subscribe(function (newValue) {
-                        shape1.x = newValue;
-                        doupdate = true;
-                    });
-                    r.top.subscribe(function (newValue) {
-                        shape1.y = newValue;
-                        doupdate = true;
-                    });
-                    var updateSize = function(newValue) {
-                        shape.graphics.clear();
-                        shape.graphics.beginFill(createjs.Graphics.getRGB(color.R, color.G, color.B)).drawRect(0, 0, rect.width(), rect.height());
-                        stage.update();
-                    };
-                    r.width.subscribe(updateSize);
-                    r.height.subscribe(updateSize);
-                });
-
-                var tick = function() {
-                    //console.log("tick:"+update);
-                    if (doupdate) {
-                        doupdate = false;
-                        stage.update();
-                    }
-                };
-
-                stage.update();
-                doupdate = false;
-                createjs.Ticker.addEventListener("tick", tick);
-            },
-            update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
-                var arr = ko.utils.unwrapObservable(valueAccessor());
-                //TODO: add/remove from stage.
-                console.log("arr updated");
-            }
-        };
-        
-    </script>
 
     @if (HttpContext.Current.IsDebuggingEnabled)
     {

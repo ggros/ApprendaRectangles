@@ -28,10 +28,10 @@ export class Rectangle implements IRectangle {
     SayHello() {
         return "hello";
     }
-    public Intersection(rect: Rectangle) {
+    //Intersection of 2 rectangles (not rotated)
+    public Intersection(rect: Rectangle):Rectangle {
         var x0 = Math.max(this.left, rect.left);
-        var x1 = Math.min(this.left + this.width, rect.left + rect.width);
-
+        var x1 = Math.min(this.left + this.width, rect.left + rect.width);        
         if (x0 <= x1) {
             var y0 = Math.max(this.top, rect.top);
             var y1 = Math.min(this.top + this.height, rect.top + rect.height);
@@ -43,11 +43,20 @@ export class Rectangle implements IRectangle {
         }
         return null;
     };
-    public Contains(rect: Rectangle) {
-        return this.left <= rect.left &&
-           this.left + this.width >= rect.left + rect.width &&
-           this.top <= rect.top &&
-           this.top + this.height >= rect.top + rect.height;
+    //Containement (not rotated)
+    public Contains(rect: Rectangle):bool {
+        var b:bool = (this.left <= rect.left) &&
+           (this.left + this.width >= rect.left + rect.width) &&
+           (this.top <= rect.top) &&
+           (this.top + this.height >= rect.top + rect.height);
+        console.log(b);
+        console.log((this.left + this.width) +">="+ (rect.left + rect.width))
+        return b;
+    }
+    public Adjacent(rect: Rectangle): bool {
+        var inter = this.Intersection(rect);
+        if (inter == null) return false;
+        return (inter.width == 0 || inter.height == 0);
     }
 }
 

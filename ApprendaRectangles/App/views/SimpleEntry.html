@@ -1,48 +1,81 @@
-﻿<section>
-    <h2 data-bind="html: displayName"></h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Rect</th>
-                <th>Left</th>
-                <th>Top</th>
-                <th>Width</th>
-                <th>Height</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Rectangle 1:</td>
-                <td>
-                    <input data-bind="value: rect1.left" /></td>
-                <td>
-                    <input data-bind="value: rect1.top" /></td>
-                <td>
-                    <input data-bind="value: rect1.width" /></td>
-                <td>
-                    <input data-bind="value: rect1.height" /></td>
-            </tr>
-            <tr>
-                <td>Rectangle 2:</td>
-                <td>
-                    <input data-bind="value: rect2.left" /></td>
-                <td>
-                    <input data-bind="value: rect2.top" /></td>
-                <td>
-                    <input data-bind="value: rect2.width" /></td>
-                <td>
-                    <input data-bind="value: rect2.height" /></td>
-            </tr>
-        </tbody>
-    </table>
-    <button data-bind="click: testRectangles">Test Rectangles</button>
+﻿<style>
+    #inputForm1
+    {
+    }
 
+        #inputForm1 input
+        {
+            width: 50px;
+        }
+
+    #drawingbox
+    {
+        background-color: black;
+        width: 640px;
+        margin-top: 15px;
+    }
+
+    .btn-group, .alert
+    {
+        margin-top: 15px;
+    }
+
+    section
+    {
+        width: 700px;
+    }
+</style>
+<section>
+    <h2 data-bind="html: displayName"></h2>
+    <div id="inputForm1" class="well">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rect</th>
+                    <th>Left</th>
+                    <th>Top</th>
+                    <th>Width</th>
+                    <th>Height</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Rectangle 1:</td>
+                    <td>
+                        <input data-bind="value: rect1.left" /></td>
+                    <td>
+                        <input data-bind="value: rect1.top" /></td>
+                    <td>
+                        <input data-bind="value: rect1.width" /></td>
+                    <td>
+                        <input data-bind="value: rect1.height" /></td>
+                </tr>
+                <tr>
+                    <td>Rectangle 2:</td>
+                    <td>
+                        <input data-bind="value: rect2.left" /></td>
+                    <td>
+                        <input data-bind="value: rect2.top" /></td>
+                    <td>
+                        <input data-bind="value: rect2.width" /></td>
+                    <td>
+                        <input data-bind="value: rect2.height" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="btn-group">
+        <button class="btn" data-bind="click: testIntersection">Intersection of 1 & 2</button>
+        <button class="btn" data-bind="click: testContainement">Containement test of 1 & 2</button>
+        <button class="btn" data-bind="click: testAdjacency">Adjacency test of 1 & 2</button>
+    </div>
+    <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Note:</strong> You can drag and drop the 2 rectangles below to change their position
+    </div>
 </section>
-<script type="text/javascript">
-    
-    
-    </script>
-<div id="drawingbox" style="background-color: black; width: 640px;">
-    <canvas id="canvas" width="640" height="480" data-bind="rectA: rectangles,hasFocus: $data"></canvas>
-    
+
+<div id="drawingbox">
+    <canvas id="canvas" width="640" height="480" data-bind="rectangles: rectangles"></canvas>
+
 </div>
