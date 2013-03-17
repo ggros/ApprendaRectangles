@@ -17,9 +17,13 @@ export class Point implements IPoint {
     // Static member
     static origin = new Point(0, 0);
 }
+export class Color {
+    constructor(public R: number, public G: number, public B: number) { }
+}
 export class Rectangle implements IRectangle {
     // Constructor
-    constructor(public left: number, public top: number, public width: number, public height: number) { }
+    constructor(public left: number, public top: number, public width: number, public height: number,public name: string) { }
+    public color = new Color(255, 0, 0);
 
     SayHello() {
         return "hello";
@@ -33,7 +37,7 @@ export class Rectangle implements IRectangle {
             var y1 = Math.min(this.top + this.height, rect.top + rect.height);
 
             if (y0 <= y1) {
-                var rect = new Rectangle(x0, y0, x1 - x0, y1 - y0);                
+                var rect = new Rectangle(x0, y0, x1 - x0, y1 - y0,"Intersection");                
                 return rect;
             }
         }

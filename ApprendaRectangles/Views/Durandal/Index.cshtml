@@ -37,60 +37,79 @@
     <script type="text/javascript">
         
         ko.bindingHandlers.rectA = {
-            shape1: null,
-            shape2: null,
             doupdate: true,
             init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
-                var modelValue = valueAccessor(), unwrappedValue = ko.utils.unwrapObservable(modelValue);
+                var modelValue = valueAccessor();
+                var arr = ko.utils.unwrapObservable(valueAccessor());
+                var canvas = element;
 
-
-                var stageWidth = 640;
-                var stageHeight = 480;
-                
                 var stage = new createjs.Stage(element);
-                shape1 = new createjs.Shape();
-                shape2 = new createjs.Shape();
                 stage.enableMouseOver();
-                var pressHandler = function (e) {
-                    e.onMouseMove = function (ev) {
-                        e.target.x = ev.stageX;
-                        e.target.y = ev.stageY;
-                        modelValue.rect1.left(ev.stageX);
-                        modelValue.rect1.top(ev.stageY);
-                        doupdate = true;
-                    };
-                };
-                var pressHandler2 = function (e) {
-                    e.onMouseMove = function (ev) {
-                        e.target.x = ev.stageX;
-                        e.target.y = ev.stageY;
-                        modelValue.rect2.left(ev.stageX);
-                        modelValue.rect2.top(ev.stageY);
-                        doupdate = true;
-                    };
-                };
-                //rectangle 1
-                shape1.graphics.beginFill(createjs.Graphics.getRGB(0, 255, 0));
-                shape1.graphics.rect(0, 0, modelValue.rect1.width(), modelValue.rect1.height());
-                //set origin at 0,0
-                shape1.regX = 0;
-                shape1.regY = 0;
-                shape1.x = modelValue.rect1.left();
-                shape1.y = modelValue.rect1.top();
-                shape1.onPress = pressHandler;
-                stage.addChild(shape1);
+                var container = new createjs.Container();
+                stage.addChild(container);
 
-                //rectangle 2
-                shape2.graphics.beginFill(createjs.Graphics.getRGB(255, 0, 0));
-                shape2.graphics.rect(0,0,modelValue.rect2.width(), modelValue.rect2.height());
-                //set origin at 0,0
-                shape2.regX = 0;
-                shape2.regY = 0;
-                shape2.x = modelValue.rect2.left();
-                shape2.y = modelValue.rect2.top();
-                shape2.onPress = pressHandler2;
-                stage.addChild(shape2);
-                
+                //wrapper function to provide scope for events
+                var h = function (target, rect) {
+
+                    target.onPress = function (e) {
+                        //canvas.style.cursor = 'pointer';
+                        $(canvas).css('cursor', 'pointer');
+                        // bump the target in front of it's siblings:
+                        container.addChild(target);
+                        var offset = { x: target.x - e.stageX, y: target.y - e.stageY };
+
+                        e.onMouseMove = function (ev) {
+                            //No need to set target.x it will be done because
+                            //there is an observer on left and top
+                            rect.left(ev.stageX + offset.x);
+                            rect.top(ev.stageY + offset.y);
+                        };
+                    };
+                    target.onMouseOver = function () {
+                    };
+                    target.onMouseOut = function () {
+                    };
+                };
+                //create rectangles on stage main container
+                ko.utils.arrayForEach(arr, function (r) {
+                    console.log(r);
+                    var rect = ko.utils.unwrapObservable(r);
+                    var shape = new createjs.Shape();
+                    var label = new createjs.Text(rect._rect.name, "bold 14px Arial", "#FFFFFF");
+                    label.textAlign = "center";
+                    label.x = rect.width() / 2;
+                    label.y = -7 + rect.height() / 2;
+                    var color = rect._rect.color;
+                    shape.graphics.beginFill(createjs.Graphics.getRGB(color.R, color.G, color.B)).drawRect(0, 0, rect.width(), rect.height());
+                    //set origin at 0,0
+                    //shape.regX = 0;
+                    //shape.regY = 0;
+
+                    var shape1 = new createjs.Container();
+                    shape1.x = rect.left();
+                    shape1.y = rect.top();
+                    shape1.addChild(shape, label);
+                    h(shape1, r);
+                    container.addChild(shape1);
+
+                    //observe
+                    r.left.subscribe(function (newValue) {
+                        shape1.x = newValue;
+                        doupdate = true;
+                    });
+                    r.top.subscribe(function (newValue) {
+                        shape1.y = newValue;
+                        doupdate = true;
+                    });
+                    var updateSize = function(newValue) {
+                        shape.graphics.clear();
+                        shape.graphics.beginFill(createjs.Graphics.getRGB(color.R, color.G, color.B)).drawRect(0, 0, rect.width(), rect.height());
+                        stage.update();
+                    };
+                    r.width.subscribe(updateSize);
+                    r.height.subscribe(updateSize);
+                });
+
                 var tick = function() {
                     //console.log("tick:"+update);
                     if (doupdate) {
@@ -100,26 +119,13 @@
                 };
 
                 stage.update();
+                doupdate = false;
                 createjs.Ticker.addEventListener("tick", tick);
             },
             update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
-                var value = ko.utils.unwrapObservable(valueAccessor());
-                //console.log(value.left());
-                //console.log(shape2);
-                shape1.x = value.rect1.left();
-                shape1.y = value.rect1.top();
-                shape1.graphics.clear();
-                shape1.graphics.beginFill(createjs.Graphics.getRGB(0, 255, 0));
-                shape1.graphics.rect(0, 0, value.rect1.width(), value.rect1.height());
-                shape1.graphics.endFill();
-
-                shape2.x = value.rect2.left();
-                shape2.y = value.rect2.top();
-                shape2.graphics.clear();
-                shape2.graphics.beginFill(createjs.Graphics.getRGB(255, 0, 0));
-                shape2.graphics.rect(0, 0, value.rect2.width(), value.rect2.height());
-                shape2.graphics.endFill();
-                doupdate = true;
+                var arr = ko.utils.unwrapObservable(valueAccessor());
+                //TODO: add/remove from stage.
+                console.log("arr updated");
             }
         };
         

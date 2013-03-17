@@ -11,12 +11,23 @@ define(["require", "exports"], function(require, exports) {
         return Point;
     })();
     exports.Point = Point;    
+    var Color = (function () {
+        function Color(R, G, B) {
+            this.R = R;
+            this.G = G;
+            this.B = B;
+        }
+        return Color;
+    })();
+    exports.Color = Color;    
     var Rectangle = (function () {
-        function Rectangle(left, top, width, height) {
+        function Rectangle(left, top, width, height, name) {
             this.left = left;
             this.top = top;
             this.width = width;
             this.height = height;
+            this.name = name;
+            this.color = new Color(255, 0, 0);
         }
         Rectangle.prototype.SayHello = function () {
             return "hello";
@@ -28,7 +39,7 @@ define(["require", "exports"], function(require, exports) {
                 var y0 = Math.max(this.top, rect.top);
                 var y1 = Math.min(this.top + this.height, rect.top + rect.height);
                 if(y0 <= y1) {
-                    var rect = new Rectangle(x0, y0, x1 - x0, y1 - y0);
+                    var rect = new Rectangle(x0, y0, x1 - x0, y1 - y0, "Intersection");
                     return rect;
                 }
             }

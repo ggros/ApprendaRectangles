@@ -172,6 +172,19 @@
     <Content Include="App\viewmodels\SimpleEntry.min.js">
       <DependentUpon>SimpleEntry.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="App\viewmodels\SimpleEntryHandlers.ts" />
+    <Content Include="App\viewmodels\SimpleEntryHandlers.js">
+      <DependentUpon>SimpleEntryHandlers.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\SimpleEntryHandlers.min.js">
+      <DependentUpon>SimpleEntryHandlers.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\testHandler.js">
+      <DependentUpon>SimpleEntryHandlers.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\testHandler.min.js">
+      <DependentUpon>SimpleEntryHandlers.ts</DependentUpon>
+    </Content>
     <Content Include="App\views\SimpleEntry.html" />
     <Content Include="Content\KidsDrawing.htm" />
     <Content Include="Scripts\easeljs-0.6.0.min.js" />
@@ -248,6 +261,12 @@
     </Content>
     <Content Include="App\viewmodels\SimpleEntry.js.map">
       <DependentUpon>SimpleEntry.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\testHandler.js.map">
+      <DependentUpon>SimpleEntryHandlers.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\SimpleEntryHandlers.js.map">
+      <DependentUpon>SimpleEntryHandlers.ts</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
