@@ -4,6 +4,9 @@ export interface IPoint {
 }
 export interface IRectangle {
     SayHello(): string;
+    Intersection(rect: IRectangle): IRectangle;
+    Contains(rect: IRectangle): bool;
+    Adjacent(rect: IRectangle): bool;
 }
 
 // Class
@@ -22,7 +25,7 @@ export class Color {
 }
 export class Rectangle implements IRectangle {
     // Constructor
-    constructor(public left: number, public top: number, public width: number, public height: number,public name: string) { }
+    constructor(public left: number, public top: number, public width: number, public height: number,public name?: string) { }
     public color = new Color(255, 0, 0);
 
     SayHello() {
@@ -49,8 +52,6 @@ export class Rectangle implements IRectangle {
            (this.left + this.width >= rect.left + rect.width) &&
            (this.top <= rect.top) &&
            (this.top + this.height >= rect.top + rect.height);
-        console.log(b);
-        console.log((this.left + this.width) +">="+ (rect.left + rect.width))
         return b;
     }
     public Adjacent(rect: Rectangle): bool {

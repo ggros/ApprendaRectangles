@@ -69,3 +69,4 @@ define(["require", "exports", 'durandal/app', '../entities/shapes', './SimpleEnt
     }
     exports.activate = activate;
 })
+//@ sourceMappingURL=SimpleEntry.js.map

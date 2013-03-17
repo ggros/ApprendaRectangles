@@ -47,8 +47,6 @@ define(["require", "exports"], function(require, exports) {
         };
         Rectangle.prototype.Contains = function (rect) {
             var b = (this.left <= rect.left) && (this.left + this.width >= rect.left + rect.width) && (this.top <= rect.top) && (this.top + this.height >= rect.top + rect.height);
-            console.log(b);
-            console.log((this.left + this.width) + ">=" + (rect.left + rect.width));
             return b;
         };
         Rectangle.prototype.Adjacent = function (rect) {
@@ -64,3 +62,4 @@ define(["require", "exports"], function(require, exports) {
     var p = new Point(3, 4);
     var dist = p.getDist();
 })
+//@ sourceMappingURL=shapes.js.map

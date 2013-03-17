@@ -282,6 +282,7 @@
     </Content>
     <TypeScriptCompile Include="Scripts\tsUnit.ts" />
     <Content Include="Scripts\typings\easeljs\easeljs.d.ts" />
+    <Content Include="Scripts\typings\requirejs\require.d.ts" />
     <Content Include="Scripts\typings\tweenjs\tweenjs.d.ts" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
