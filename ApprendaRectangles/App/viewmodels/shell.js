@@ -13,4 +13,3 @@ define(["require", "exports", 'durandal/plugins/router', 'durandal/app'], functi
     }
     exports.activate = activate;
 })
-//@ sourceMappingURL=shell.js.map

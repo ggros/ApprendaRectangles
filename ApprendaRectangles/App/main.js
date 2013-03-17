@@ -22,7 +22,9 @@ define(function(require) {
         //configure routing
         router.useConvention();
         router.mapNav('welcome');
+        router.mapNav('SimpleEntry');
         router.mapNav('flickr');
+        router.mapNav('TestRunner');
 
         app.adaptToDevice();
         

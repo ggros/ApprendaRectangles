@@ -1,0 +1,48 @@
+﻿<section>
+    <h2 data-bind="html: displayName"></h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Rect</th>
+                <th>Left</th>
+                <th>Top</th>
+                <th>Width</th>
+                <th>Height</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Rectangle 1:</td>
+                <td>
+                    <input data-bind="value: rect1.left" /></td>
+                <td>
+                    <input data-bind="value: rect1.top" /></td>
+                <td>
+                    <input data-bind="value: rect1.width" /></td>
+                <td>
+                    <input data-bind="value: rect1.height" /></td>
+            </tr>
+            <tr>
+                <td>Rectangle 2:</td>
+                <td>
+                    <input data-bind="value: rect2.left" /></td>
+                <td>
+                    <input data-bind="value: rect2.top" /></td>
+                <td>
+                    <input data-bind="value: rect2.width" /></td>
+                <td>
+                    <input data-bind="value: rect2.height" /></td>
+            </tr>
+        </tbody>
+    </table>
+    <button data-bind="click: testRectangles">Test Rectangles</button>
+
+</section>
+<script type="text/javascript">
+    
+    
+    </script>
+<div id="drawingbox" style="background-color: black; width: 640px;">
+    <canvas id="canvas" width="640" height="480" data-bind="rectA: $data"></canvas>
+    
+</div>

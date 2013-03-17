@@ -165,6 +165,26 @@
     <Content Include="App\durandal\viewModel.js" />
     <Content Include="App\durandal\viewModelBinder.js" />
     <Content Include="App\durandal\widget.js" />
+    <TypeScriptCompile Include="App\viewmodels\SimpleEntry.ts" />
+    <Content Include="App\viewmodels\SimpleEntry.js">
+      <DependentUpon>SimpleEntry.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\SimpleEntry.min.js">
+      <DependentUpon>SimpleEntry.ts</DependentUpon>
+    </Content>
+    <Content Include="App\views\SimpleEntry.html" />
+    <Content Include="Content\KidsDrawing.htm" />
+    <Content Include="Scripts\easeljs-0.6.0.min.js" />
+    <Content Include="Scripts\tsUnit.js.map">
+      <DependentUpon>tsUnit.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App\entities\shapes.ts" />
+    <Content Include="App\entities\shapes.js">
+      <DependentUpon>shapes.ts</DependentUpon>
+    </Content>
+    <Content Include="App\entities\shapes.min.js">
+      <DependentUpon>shapes.ts</DependentUpon>
+    </Content>
     <Content Include="App\main-built.js" />
     <Content Include="App\main.js" />
     <Content Include="App\viewmodels\flickr.js">
@@ -181,6 +201,13 @@
     <Content Include="App\viewmodels\shell.min.js">
       <DependentUpon>shell.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="App\viewmodels\TestRunner.ts" />
+    <Content Include="App\viewmodels\TestRunner.js">
+      <DependentUpon>TestRunner.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\TestRunner.min.js">
+      <DependentUpon>TestRunner.ts</DependentUpon>
+    </Content>
     <Content Include="App\viewmodels\welcome.js">
       <DependentUpon>welcome.ts</DependentUpon>
     </Content>
@@ -191,6 +218,7 @@
     <Content Include="App\views\detail.html" />
     <Content Include="App\views\flickr.html" />
     <Content Include="App\views\shell.html" />
+    <Content Include="App\views\TestRunner.html" />
     <Content Include="App\views\welcome.html" />
     <Content Include="Content\app.css" />
     <Content Include="Content\bootstrap-responsive.css" />
@@ -207,9 +235,19 @@
     <Content Include="Content\images\icon.png" />
     <Content Include="Content\images\ios-startup-image-landscape.png" />
     <Content Include="Content\images\ios-startup-image-portrait.png" />
+    <Content Include="Content\qunit.css" />
     <Content Include="Global.asax" />
     <Content Include="App\viewmodels\shell.js.map">
       <DependentUpon>shell.ts</DependentUpon>
+    </Content>
+    <Content Include="App\entities\shapes.js.map">
+      <DependentUpon>shapes.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\TestRunner.js.map">
+      <DependentUpon>TestRunner.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\SimpleEntry.js.map">
+      <DependentUpon>SimpleEntry.ts</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -220,8 +258,18 @@
     <Content Include="Scripts\knockout-2.2.1.debug.js" />
     <Content Include="Scripts\knockout-2.2.1.js" />
     <Content Include="Scripts\knockout.d.ts" />
+    <Content Include="Scripts\qunit.js" />
     <Content Include="Scripts\sammy-0.7.4.js" />
     <Content Include="Scripts\sammy-0.7.4.min.js" />
+    <Content Include="Scripts\tsUnit.js">
+      <DependentUpon>tsUnit.ts</DependentUpon>
+    </Content>
+    <Content Include="Scripts\tsUnit.min.js">
+      <DependentUpon>tsUnit.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="Scripts\tsUnit.ts" />
+    <Content Include="Scripts\typings\easeljs\easeljs.d.ts" />
+    <Content Include="Scripts\typings\tweenjs\tweenjs.d.ts" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
